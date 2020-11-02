@@ -1,0 +1,28 @@
+# docker-compose is used to run all the required services
+
+version: "3"
+
+services:
+
+  # db runs the postgres database
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  
+  # app runs the server
+  app:
+    depends_on:
+      - db
+    build: .
+    command: npm start
+    ports: 
+      - "3333:3333"
+    volumes:
+      - .:/usr/app

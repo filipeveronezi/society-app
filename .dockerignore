@@ -1,0 +1,4 @@
+# ignored files
+node_modules
+.gitignore
+README.md
