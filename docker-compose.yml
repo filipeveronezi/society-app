@@ -6,7 +6,7 @@ services:
 
   # 'db' runs the postgres database
   db:
-    image: postgres
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: postgres
