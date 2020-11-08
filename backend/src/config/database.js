@@ -1,7 +1,7 @@
 module.exports = {
   dialect: 'postgres',
   host: 'db',
-  //host: 'localhost',
+  // host: 'localhost',
   username: 'postgres',
   password: 'docker',
   database: 'societysql',
