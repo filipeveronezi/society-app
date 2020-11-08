@@ -4,7 +4,7 @@ version: "3"
 
 services:
 
-  # db runs the postgres database
+  # 'db' runs the postgres database
   db:
     image: postgres
     restart: always
@@ -16,7 +16,7 @@ services:
     ports:
       - "5432:5432"
   
-  # app runs the server
+  # 'app' runs the server
   app:
     depends_on:
       - db
