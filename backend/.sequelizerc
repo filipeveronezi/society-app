@@ -1,5 +1,11 @@
+// This is a sequelize config file
 const path = require('path');
 
+// This module points to:
+// 1. Database config file;
+// 2. Migrations directory.
+
+// The data config below is used by the 'npx sequelize' commands (db migrations, db creation...)
 module.exports = {
   config: path.resolve(__dirname, 'src', 'config', 'database.js'),
   'migrations-path': path.resolve(__dirname, 'src', 'database', 'migrations'),

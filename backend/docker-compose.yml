@@ -1,7 +1,9 @@
 # docker-compose is used to run all the required services
 
+# docker-compose version
 version: "3"
 
+# every service is a different container
 services:
 
   # 'db' runs the postgres database
@@ -27,17 +29,6 @@ services:
       - "3333:3333"
     volumes:
       - .:/usr/app
-  
-  # db-create:
-  #   depends_on:
-  #     - db
-  #     - app
-  #   image: society-app
-  #   command: ["./wait-for-postgres.sh", "db", "--", "npm", "run", "create-db"]
 
-  # migration:
-  #   depends_on:
-  #     - db
-  #     - app
-  #   image: society-app
+  #   useful command to run migration script after database is ready (UNUSED for now):
   #   command: ["./wait-for-postgres.sh", "db", "--", "npm", "run", "migrate-db"]

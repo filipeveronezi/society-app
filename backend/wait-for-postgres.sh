@@ -1,6 +1,8 @@
 #!/bin/sh
 # wait-for-postgres.sh
 
+# unused for now, may be useful to execute scripts after postgres db is ready
+
 set -e
   
 host="$1"
