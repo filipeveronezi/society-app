@@ -62,7 +62,7 @@ export default {
     async login(e) {
       e.preventDefault();
 
-      const resp = await fetch("http://localhost:3333/auth", {
+      const res = await fetch("http://localhost:3333/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -73,15 +73,31 @@ export default {
         })
       });
 
-      const { user, token } = await resp.json();
-      this.setUser(user);
-      this.setToken(token);
-      this.$router.push("/courts");
+      if (res.status == 200) {
+        const { user, token } = await res.json();
+        this.setUser(user);
+        this.setToken(token);
+        this.$router.push("/courts");
+
+        this.$notify({
+          group: "success",
+          title: `Bem-vindo ${user.name}!`,
+          text: "",
+          closeOnClick: "true"
+        });
+      } else {
+        this.$notify({
+          group: "error",
+          title: "Erro",
+          text: "Credenciais inválidas.",
+          closeOnClick: "true"
+        });
+      }
     },
     async register(e) {
       e.preventDefault();
 
-      const resp = await fetch("http://localhost:3333/register", {
+      const res = await fetch("http://localhost:3333/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -93,9 +109,9 @@ export default {
         })
       });
 
-      if (resp.status == 200) {
+      if (res.status == 200) {
         this.$notify({
-          group: "foo",
+          group: "success",
           title: "Seja bem-vindo!",
           text:
             "Seu cadastro foi realizado com sucesso, acesse sua conta agora mesmo através do formulário de login.",
@@ -103,7 +119,7 @@ export default {
         });
       } else {
         this.$notify({
-          group: "foo",
+          group: "error",
           title: "Erro",
           text: "Falha ao cadastrar.",
           closeOnClick: "true"
@@ -259,4 +275,31 @@ h2 {
 #registerForm {
   height: 350px;
 }
+
+.vue-notification {
+  padding: 10px;
+  margin: 15px 15px 0 0;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+
+  color: #ffffff;
+  background: #44a4fc;
+
+  border: none;
+}
+
+.vue-notification .warn {
+  background: #ffb648;
+}
+
+.vue-notification .error {
+  background: #e54d42;
+}
+
+.vue-notification .success {
+  background: #68cd86;
+}
+
 </style>

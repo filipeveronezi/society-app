@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <notifications group="foo" />
+    <notifications group="error" classes="vue-notification error" />
+    <notifications group="success" classes="vue-notification success" />
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export default {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   text-align: center;
-  color: #2c3e50;
+  color: #0F0F0F;
 }
 
 h1, h2 {
@@ -33,12 +34,4 @@ ul {
   padding: 0;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
