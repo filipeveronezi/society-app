@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import regeneratorRuntime from "regenerator-runtime";
-import { mapMutations } from "vuex";
+import regeneratorRuntime from "regenerator-runtime"; // necessary for event handler async functions
+import { mapMutations } from "vuex"; // storage for jwt and other stuff
 
 export default {
   data: () => {
@@ -145,7 +145,6 @@ body {
   width: 100%;
   height: 100%;
   background: linear-gradient(329.54deg, #8bc0ca 0%, #72b9b9 100%);
-  text-transform: lowercase;
 
   display: flex;
   justify-content: center;
@@ -212,9 +211,9 @@ button {
 
 input {
   font-family: "Oxygen", sans-serif;
-  text-transform: lowercase;
-  letter-spacing: 0.2rem;
   font-size: 16px;
+
+  letter-spacing: 0.1rem;
 
   padding: 1px 0 1px 15px;
 
@@ -223,6 +222,11 @@ input {
   border-radius: 12px;
 
   width: 65%;
+}
+
+input::placeholder {
+  text-transform: lowercase;
+  letter-spacing: 0.2rem;
 }
 
 input + input {
@@ -254,6 +258,7 @@ button:hover {
 h1,
 h2 {
   letter-spacing: 0.2rem;
+  text-transform: lowercase;
 }
 
 h1 {
@@ -277,12 +282,14 @@ h2 {
 }
 
 .vue-notification {
-  padding: 10px;
+  font-family: "Oxygen", sans-serif;
+
+  padding: 20px;
   margin: 15px 15px 0 0;
 
   border-radius: 12px;
 
-  font-size: 12px;
+  font-size: 16px;
 
   color: #ffffff;
   background: #44a4fc;

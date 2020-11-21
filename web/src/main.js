@@ -1,18 +1,19 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
-import VueRouter from 'vue-router';
-import Notifications from 'vue-notification';
+import Vuex from 'vuex'; // storage
+import VueRouter from 'vue-router'; // router
+import Notifications from 'vue-notification'; // notifications plugin
 
+// components
 import App from './App.vue';
-import Login from './components/Login.vue';
+import Landing from './components/Landing.vue';
 import Courts from './components/Courts.vue';
 
+// middlewares
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(Notifications)
 
-Vue.config.productionTip = false;
-
+// vuex storage
 const store = new Vuex.Store({
   state: {
     user: null,
@@ -34,15 +35,16 @@ const store = new Vuex.Store({
   }
 });
 
+// paths
 const router = new VueRouter({
   mode: "history",
   routes: [
-    { path: "/", component: App },
-    { path: "/login", component: Login },
+    { path: "/", component: Landing },
     { path: "/courts", component: Courts },
   ]
 })
 
+// render main page
 new Vue({
   render: h => h(App),
   store: store,
