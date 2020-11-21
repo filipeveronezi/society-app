@@ -1,14 +1,15 @@
 // Routes that don't need authentication
 
 const express = require('express');
+
 const UserController = require('./app/controllers/UserController');
 const AuthController = require('./app/controllers/AuthController');
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-  // login/register screen
-})
+// routes.get('/', (req, res) => {
+
+// })
 
 // dev route to get all users:
 // routes.get('/users', UserController.index);

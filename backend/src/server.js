@@ -2,7 +2,7 @@
 const express = require('express');
 const routes = require('./routes');
 const authRoutes = require('./authRoutes')
-const path = require('path');
+const cors = require('cors');
 
 // link to database directory
 require('./database');
@@ -14,6 +14,9 @@ const HOST = '0.0.0.0';
 const app = express();
 
 app.use(express.json());
+
+// Enable CORS
+app.use(cors());
 
 // Avaiable routes
 app.use(routes);
