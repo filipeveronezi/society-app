@@ -24,7 +24,7 @@ services:
       - db
     build: .
     image: society-app
-    command: npm start
+    command: npm run dev
     ports: 
       - "3333:3333"
     volumes:
