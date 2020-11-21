@@ -1,9 +1,12 @@
 const jwt = require("jsonwebtoken");
 const authConfig = require("../../config/auth.json")
 
+// Authorization Middleware used to validate token in HTTP header
+
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
+  // Some basic validations to improve performance
   if(!authHeader) {
     return res.status(401).send({ error: 'Unauthorized' });
   }
@@ -20,6 +23,7 @@ module.exports = (req, res, next) => {
     return res.status(401).send({ error: 'Token malformatted'});
   }
 
+  // Actual JWT verification
   jwt.verify(hash, authConfig.secret, (err, decoded) => {
     if(err) return res.status(401).send({ error: 'Invalid token' });
 
