@@ -10,7 +10,11 @@ authRoutes.use(authMiddleware);
 
 // list of avaiable courts for rent
 authRoutes.get('/courts', (req, res) => {
-  res.send({ login: true, user: req.userId})
+  res.send({ login: true, user: req.userId });
 });
+
+authRoutes.post('/validate', (req, res) => {
+  res.send({ authorized: true });
+})
 
 module.exports = authRoutes;

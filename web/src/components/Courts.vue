@@ -1,22 +1,42 @@
 <template>
-  <div>
-    <h1 v-if="isLoggedIn">Em desenvolvimento</h1>
-    <h1 v-if="!isLoggedIn">Ops, parece que seu login expirou =(</h1>
-    <router-link v-if="!isLoggedIn" to="/">Voltar à página inicial</router-link>
+  <div id="title">
+    <h1>Em desenvolvimento</h1>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import validate from '../validate';
 
 export default {
-  computed: {
-    ...mapGetters(["isLoggedIn"])
+  mounted: function() {
+    this.validate();
+  },
+  methods: {
+    async validate() {
+    const token = await window.localStorage.getItem('token');
+    const res = await validate.jwt_validate(token);
+    if(res != 200) {
+      this.$router.push("/");
+      this.$notify({
+        group: "error",
+        title: `Usuário não autenticado`,
+        text: "Por favor, realize o login novamente.",
+        closeOnClick: "true"
+      });
+    }
+  },
   }
-};
+}
+
 </script>
 
 <style>
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 body {
   width: 100%;
   height: 100%;
@@ -28,15 +48,14 @@ body {
   margin: 0;
 }
 
+h1, h2 {
+  font-weight: normal;
+}
+
 h1 {
   font-family: "Oxygen", sans-serif;
   font-size: 30px;
+  text-transform: lowercase;
 }
 
-router-link {
-  font-family: "Oxygen", sans-serif;
-  font-size: 15px;
-
-  color: #0F0F0F;
-}
 </style>

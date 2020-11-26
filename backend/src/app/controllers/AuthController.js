@@ -33,7 +33,7 @@ module.exports = {
 
     // generate JWT
     const token = jwt.sign({ id: user.id }, authConfig.secret, { 
-      expiresIn: 86400,
+      expiresIn: 300,
     });
 
     // send user + token

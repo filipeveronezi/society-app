@@ -57,8 +57,6 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setUser", "setToken"]),
-
     async login(e) {
       e.preventDefault();
 
@@ -75,8 +73,11 @@ export default {
 
       if (res.status == 200) {
         const { user, token } = await res.json();
-        this.setUser(user);
-        this.setToken(token);
+
+        window.localStorage.clear();
+        window.localStorage.setItem("user", user);
+        window.localStorage.setItem("token", token);
+
         this.$router.push("/courts");
 
         this.$notify({
@@ -117,6 +118,9 @@ export default {
             "Seu cadastro foi realizado com sucesso, acesse sua conta agora mesmo através do formulário de login.",
           closeOnClick: "true"
         });
+        this.registerName = "";
+        this.registerEmail = "";
+        this.registerPassword = "";
       } else {
         this.$notify({
           group: "error",
@@ -160,6 +164,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h1, h2 {
+  font-weight: normal;
 }
 
 #logo {
@@ -308,5 +316,4 @@ h2 {
 .vue-notification .success {
   background: #68cd86;
 }
-
 </style>
