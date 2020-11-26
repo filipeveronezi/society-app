@@ -24,9 +24,9 @@ then
   npx sequelize db:create
   echo "Migrating database..."
   npx sequelize db:migrate
-  >&2 echo "Postgres is ready!"
+  >&2 echo "Database is ready!"
 else
-  >&2 echo "Database already exists. Postgres is ready!"
+  >&2 echo "Database already exists and is ready to use!"
 fi
 
 exec $cmd
