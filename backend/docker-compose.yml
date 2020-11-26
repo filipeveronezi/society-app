@@ -24,11 +24,8 @@ services:
       - db
     build: .
     image: society-app
-    command: npm run dev
+    command: ["./wait-for-postgres.sh", "db", "--", "npm", "run", "dev"]
     ports: 
       - "3333:3333"
     volumes:
       - .:/usr/app
-
-  #   useful command to run migration script after database is ready (UNUSED for now):
-  #   command: ["./wait-for-postgres.sh", "db", "--", "npm", "run", "migrate-db"]
