@@ -44,7 +44,6 @@
 
 <script>
 import regeneratorRuntime from "regenerator-runtime"; // necessary for event handler async functions
-import { mapMutations } from "vuex"; // storage for jwt and other stuff
 
 export default {
   data: () => {
