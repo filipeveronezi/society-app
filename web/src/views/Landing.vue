@@ -133,32 +133,14 @@ export default {
 };
 </script>
 
-<style>
-*:focus {
-  outline: none;
-}
-
-html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(329.54deg, #8bc0ca 0%, #72b9b9 100%);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-}
+<style scoped>
 
 main {
   width: 100%;
   height: 100%;
   margin: 0;
+
+  background: linear-gradient(329.54deg, #8bc0ca 0%, #72b9b9 100%);
 
   display: flex;
   justify-content: center;
@@ -286,33 +268,5 @@ h2 {
 
 #registerForm {
   height: 350px;
-}
-
-.vue-notification {
-  font-family: "Oxygen", sans-serif;
-
-  padding: 20px;
-  margin: 15px 15px 0 0;
-
-  border-radius: 12px;
-
-  font-size: 16px;
-
-  color: #ffffff;
-  background: #44a4fc;
-
-  border: none;
-}
-
-.vue-notification .warn {
-  background: #ffb648;
-}
-
-.vue-notification .error {
-  background: #e54d42;
-}
-
-.vue-notification .success {
-  background: #68cd86;
 }
 </style>
