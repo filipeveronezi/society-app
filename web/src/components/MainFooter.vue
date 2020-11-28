@@ -1,7 +1,7 @@
 <template>
 <div id="main-footer">
   <footer>
-    <img src="../assets/logo-icon.svg" alt="Logomarca de Society" />
+    <img src="../assets/images/logo-icon.svg" alt="Logomarca de Society" />
   </footer>
 </div>
 </template>

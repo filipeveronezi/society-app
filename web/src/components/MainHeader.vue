@@ -4,12 +4,12 @@
       <router-link to="/courts" id="logo">
         <img
           id="logo-img"
-          src="../assets/logo-icon.svg"
+          src="../assets/images/logo-icon.svg"
           alt="Logomarca de Society"
         />
         <p id="logo-text">Society</p>
       </router-link>
-      <h1>{{ title }}</h1>
+      <h1 class="animate-fadeIn">{{ title }}</h1>
       <router-link to="/" id="logout" @click.native="logout">Logout</router-link>
     </header>
 </div>
@@ -43,6 +43,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/styles/animations.css';
+
 header {
   border-bottom: 1px solid #c6c6c6;
   background: #ffffff;
@@ -95,6 +97,10 @@ header h1 {
   letter-spacing: 3px;
 
   text-transform: lowercase;
+
+  animation-delay: 50ms;
+
+  cursor: default;
 }
 
 #logout {
@@ -110,9 +116,25 @@ header h1 {
   border: none;
   background: none;
 
+  height: 100%;
+  width: 5%;
+
   color: #C6C6C6;
-  margin: 0 30px 0 0;
+  margin: 0;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: .4s;
 
   cursor: pointer;
 }
+
+#logout:hover {
+  background: #e6e6e6;
+  color: #FFFFFF;
+}
+
 </style>

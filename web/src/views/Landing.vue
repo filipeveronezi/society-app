@@ -1,11 +1,11 @@
 <template>
   <main>
-    <div id="logo">
-      <img src="../assets/logo-icon.svg" alt="Logomarca de Society" />
+    <div id="logo" class="animate-up">
+      <img src="../assets/images/logo-icon.svg" alt="Logomarca de Society" />
       <p id="logo-text">Society</p>
     </div>
     <div id="forms">
-      <form @submit="login" id="loginForm">
+      <form @submit="login" id="loginForm" class="animate-up">
         <h1>Acesse</h1>
         <h2>
           Sua conta
@@ -20,7 +20,7 @@
         />
         <button type="submit">Acesse</button>
       </form>
-      <form @submit="register" id="registerForm">
+      <form @submit="register" id="registerForm" class="animate-up">
         <h1>Ou... <br />Registre-se</h1>
         <h2>Gratuitamente agora mesmo</h2>
         <input v-model="registerName" type="text" placeholder="Nome" required />
@@ -134,6 +134,7 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/styles/animations.css';
 
 main {
   width: 100%;
@@ -154,6 +155,8 @@ h1, h2 {
 #logo {
   position: absolute;
   left: 17%;
+
+  animation-delay: 50ms;
 }
 
 #logo-text {
@@ -264,9 +267,11 @@ h2 {
 
 #loginForm {
   height: 250px;
+  animation-delay: 150ms;
 }
 
 #registerForm {
   height: 350px;
+  animation-delay: 100ms;
 }
 </style>

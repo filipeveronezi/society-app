@@ -2,8 +2,8 @@
   <div id="main-container">
     <main-header title="Conecte-se e garanta aquele futebol com os amigos!"/>
     <main>
-      <h1>Work in progress =)</h1>
-      <router-link to="/add-court" id="add-court">
+      <h1 class="animate-up">Work in progress =)</h1>
+      <router-link to="/add-court" id="add-court" class="animate-up">
         <p>+</p>
       </router-link>
     </main>
@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/styles/animations.css';
 
 #main-container {
   min-height: 100%;
@@ -58,6 +59,7 @@ main {
 
   cursor: pointer;
   transition: 0.4s;
+  animation-delay: 100ms;
 
   text-decoration: none;
 }
@@ -85,6 +87,8 @@ h1 {
   font-family: "Oxygen", sans-serif;
   font-size: 30px;
   text-transform: lowercase;
+
+  animation-delay: 50ms;
 }
 
 </style>
