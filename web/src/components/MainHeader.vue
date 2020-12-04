@@ -18,27 +18,11 @@
 <script>
 export default {
   props: ['title'],
-  mounted: function() {
-      this.validate();
-    },
-    methods: {
-      async validate() {
-        const token = await window.localStorage.getItem("token");
-        const res = await validate.jwt_validate(token);
-        if (res != 200) {
-          this.$router.push("/");
-          this.$notify({
-            group: "error",
-            title: `Usuário não autenticado`,
-            text: "Por favor, realize o login novamente.",
-            closeOnClick: "true"
-          });
-        }
-      },
-      logout() {
-        window.localStorage.clear();
-      }
+  methods: {
+    logout() {
+      window.localStorage.clear();
     }
+  }
 }
 </script>
 

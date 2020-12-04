@@ -1,0 +1,49 @@
+# docker-compose is used to run all the required services
+
+# docker-compose version
+version: "3"
+
+# every service is a different container
+services:
+
+  # 'users-db' runs the postgres users database
+  users-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - ./backend-users/pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # 'users-api' runs the users api
+  users-api:
+    depends_on:
+      - users-db
+    build: ./backend-users
+    image: users
+    restart: always
+    command: ["./wait-for-postgres.sh", "users-db", "--", "npm", "run", "dev"]
+    ports: 
+      - "3333:3333"
+    volumes:
+      - ./backend-users:/usr/users-api
+
+
+  # 'web' runs the frontend client
+  web:
+    depends_on:
+      - users-db
+      - users-api
+    build:
+      context: ./web
+      dockerfile: Dockerfile-dev
+    image: web
+    restart: always
+    command: ["yarn", "dev"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./web:/usr/web

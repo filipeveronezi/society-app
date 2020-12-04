@@ -1,11 +1,11 @@
 // database configuration
 module.exports = {
   dialect: 'postgres',
-  host: 'db',
+  host: 'users-db',
   // host: 'localhost',
   username: 'postgres',
   password: 'docker',
-  database: 'societysql',
+  database: 'userssql',
   define: {
     timestamps: true,
     underscored: true,
