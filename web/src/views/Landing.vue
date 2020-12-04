@@ -144,7 +144,7 @@ main {
   background: linear-gradient(329.54deg, #8bc0ca 0%, #72b9b9 100%);
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -192,8 +192,11 @@ form {
   flex-direction: column;
   padding: 4vh;
   margin: 1vh;
-  width: 55%;
+  width: 50%;
   padding: 1rem 5rem 2.5rem 5rem;
+
+  min-width: 350px;
+  max-width: 450px;
 }
 
 input,
@@ -213,7 +216,7 @@ input {
   border: none;
   border-radius: 12px;
 
-  width: 65%;
+  width: 320px;
 }
 
 input::placeholder {
@@ -238,9 +241,9 @@ button {
   border-radius: 12px;
   cursor: pointer;
 
-  width: 66.5%;
-
   transition: 0.4s;
+
+  width: 335px;
 }
 
 button:hover {
