@@ -31,6 +31,30 @@ services:
     volumes:
       - ./backend-users:/usr/users-api
 
+  #
+  society-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - ./backend-society/pgdata:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+
+  society-api:
+    depends_on:
+      - society-db
+    build: ./backend-society
+    image: society
+    restart: always
+    command: ["./wait-for-postgres.sh", "users-db", "--", "npm", "run", "dev"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend-society:/usr/society-api
+
 
   # 'web' runs the frontend client
   web:
