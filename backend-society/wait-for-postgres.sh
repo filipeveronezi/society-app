@@ -16,7 +16,7 @@ done
 
 echo "Postgres avaiable!"
 
-RESULT=$(PGPASSWORD=docker psql -h "$host" -U "postgres" -c 'select 1' -d userssql || echo "0")
+RESULT=$(PGPASSWORD=docker psql -h "$host" -U "postgres" -c 'select 1' -d societysql || echo "0")
 
 if [ $RESULT = "0" > /dev/null 2>&1 ];
 then

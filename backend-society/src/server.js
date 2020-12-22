@@ -4,7 +4,7 @@ const routes = require('./routes');
 const cors = require('cors');
 
 // link to database directory
-// require('./database');
+require('./database');
 
 // API config
 const PORT = 3000;

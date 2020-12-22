@@ -49,7 +49,7 @@ services:
     build: ./backend-society
     image: society
     restart: always
-    command: ["./wait-for-postgres.sh", "users-db", "--", "npm", "run", "dev"]
+    command: ["./wait-for-postgres.sh", "society-db", "--", "npm", "run", "dev"]
     ports:
       - "3000:3000"
     volumes:
