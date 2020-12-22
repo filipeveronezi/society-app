@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.DECIMAL(10,2),
         allowNull: false,
       },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

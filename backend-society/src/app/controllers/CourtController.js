@@ -10,9 +10,9 @@ module.exports = {
 
   // insert court
   async store(req, res) {
-    const { name, hour_value, user_id } = req.body;
+    const { name, hour_value, phone, user_id } = req.body;
     try {
-      const court = await Court.create({ name, hour_value, user_id });
+      const court = await Court.create({ name, hour_value, phone, user_id });
       return res.json(court);
     } catch (error) {
       console.log(error);
