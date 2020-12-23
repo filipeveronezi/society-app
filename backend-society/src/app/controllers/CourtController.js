@@ -1,5 +1,4 @@
 const Court = require("../models/Court");
-const { Op } = require("sequelize");
 
 module.exports = {
   // select all users

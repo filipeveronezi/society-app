@@ -7,6 +7,7 @@ import App from './App.vue';
 import Landing from './views/Landing.vue';
 import Courts from './views/Courts.vue';
 import AddCourt from './views/AddCourt';
+import UpdateCourt from './views/UpdateCourt';
 
 // middlewares
 Vue.use(VueRouter);
@@ -18,7 +19,8 @@ const router = new VueRouter({
   routes: [
     { path: "/", component: Landing },
     { path: "/courts", component: Courts },
-    { path: "/add-court", component: AddCourt }
+    { path: "/add-court", component: AddCourt },
+    { path: "/update-court", component: UpdateCourt}
   ]
 })
 

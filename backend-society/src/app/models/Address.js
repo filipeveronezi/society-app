@@ -14,7 +14,7 @@ class Address extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Court, { foreignKey: 'court_id', as: 'court' });
+    this.belongsTo(models.Court, { foreignKey: 'court_id', as: 'address' });
   }
 }
 

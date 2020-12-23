@@ -2,6 +2,11 @@ const Address = require('../models/Address');
 const Court = require('../models/Court');
 
 module.exports = {
+  async index(req, res) {
+    const addresses = await Address.findAll();
+    return res.json(addresses);
+  },
+  
   async store(req,res){
     const { court_id } = req.params;
     const { street, number, district, city, state } = req.body;

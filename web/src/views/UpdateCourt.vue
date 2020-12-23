@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <main-header title="Cadastre sua quadra e conecte-se com pessoas imediatamente!"/>
+    <main-header title="Ops... Precisando fazer algumas alterações?"/>
     <main>
       <court-form/>
     </main>
@@ -23,18 +23,18 @@ export default {
   },
   methods: {
     async validate() {
-      const token = await window.localStorage.getItem("token");
-      const res = await validate.jwt_validate(token);
-      if (res != 200) {
-        this.$router.push("/");
-        this.$notify({
-          group: "error",
-          title: `Usuário não autenticado`,
-          text: "Por favor, realize o login novamente.",
-          closeOnClick: "true"
-        });
-      }
-    },
+        const token = await window.localStorage.getItem("token");
+        const res = await validate.jwt_validate(token);
+        if (res != 200) {
+          this.$router.push("/");
+          this.$notify({
+            group: "error",
+            title: `Usuário não autenticado`,
+            text: "Por favor, realize o login novamente.",
+            closeOnClick: "true"
+          });
+        }
+      },
   }
 }
 </script>

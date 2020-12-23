@@ -15,7 +15,7 @@ export default {
 <style scoped>
 #main-footer {
   width: 100%;
-  height: 130px;
+  height: 85px;
 }
 
 footer {
@@ -23,13 +23,15 @@ footer {
   bottom: 0;
 
   width: 100%;
-  height: 130px;
+  height: 85px;
 
   background: #f3f3f3;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  z-index: 999;
 }
 
 footer img {

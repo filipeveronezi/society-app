@@ -13,7 +13,7 @@ class Court extends Model {
   }
 
   static associate(models) {
-    this.hasOne(models.Address, { foreignKey: 'court_id', as: 'court' });
+    this.hasOne(models.Address, { foreignKey: 'court_id', as: 'address' });
   }
 }
 

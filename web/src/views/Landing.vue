@@ -74,7 +74,7 @@ export default {
         const { user, token } = await res.json();
 
         window.localStorage.clear();
-        window.localStorage.setItem("user", user);
+        window.localStorage.setItem("user_id", user.id);
         window.localStorage.setItem("token", token);
 
         this.$router.push("/courts");
