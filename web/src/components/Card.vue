@@ -11,7 +11,7 @@
         <p id="district-city-state"> {{ district }}, {{ city }}-{{ state }} </p>
       </div>
       <div class="label-group">
-        <p id="hour_value"> R${{ hour_value }} </p>
+        <p id="hour_value"> R${{ hour_value }}/h </p>
       </div>
     </div>
     <a v-bind:href="'https://api.whatsapp.com/send?l=pt_BR&phone=' + phone" target="_blank">

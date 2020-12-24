@@ -144,7 +144,7 @@ export default {
 
   form {
     margin: 0;
-    width: 25%;
+    width: 30%;
     min-width: 400px;
     height: 70%;
     background: #FFF;
@@ -200,7 +200,7 @@ export default {
   }
 
   .input-group + .input-group, .double-input-group + .input-group, .input-group + .double-input-group {
-    margin-top: 2vh;
+    margin-top: .3vh;
   }
 
   input,
