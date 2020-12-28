@@ -18,4 +18,19 @@ module.exports = {
       return res.status(400).send({ error: "Court creation failed" });
     }
   },
+
+  async delete(req, res) {
+    const { court_id } = req.params;
+    try {
+      Court.destroy({
+        where: {
+          id: court_id
+        }
+      })
+      return res.status(200).json({ success: 'Deletion successful' });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ error: 'Deletion failed'});
+    }
+  }
 };

@@ -15,4 +15,6 @@ routes.post('/courts', CourtController.store);
 
 routes.post('/courts/:court_id/addresses', AddressController.store);
 
+routes.delete('/courts/:court_id', CourtController.delete);
+
 module.exports = routes;

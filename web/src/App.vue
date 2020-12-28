@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <vue-confirm-dialog></vue-confirm-dialog>
     <notifications group="error" classes="vue-notification error" />
     <notifications group="success" classes="vue-notification success" />
   </div>

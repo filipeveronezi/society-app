@@ -3,6 +3,14 @@
     <div class="upper">
       <div class="label-group">
         <h1 id="name"> {{ name }} </h1>
+        <div class="buttons" v-if="user_id == local_user_id">
+          <button>
+            <img src="../assets/images/edit.svg" alt="Botão de deletar">
+          </button>
+          <button v-on:click="deleteCourt()">
+            <img src="../assets/images/delete.svg" alt="Botão de editar">
+          </button>
+        </div>
       </div>
       <div class="label-group">
         <p id="street-number"> {{ street }}, {{ number }} </p>
@@ -33,8 +41,56 @@ export default {
     'city',
     'state',
     'hour_value',
-    'phone'
-  ]
+    'phone',
+    'user_id',
+    'court_id'
+  ],
+  data: () => {
+    return {
+      local_user_id: window.localStorage.getItem('user_id'),
+    }
+  },
+  methods: {
+    async deleteCourt() {
+      this.$confirm(
+        {
+          message: `Tem certeza que deseja deletar esta quadra?`,
+          button: {
+            no: 'Não',
+            yes: 'Sim'
+          },
+          /**
+          * Callback Function
+          * @param {Boolean} confirm 
+          */
+          callback: async confirm => {
+            if (confirm) {
+              const res = await fetch("http://localhost:3000/courts/" + this.court_id, {
+                method: "DELETE",
+              });
+              if(res.status == 200) {
+                this.$notify({
+                  group: "success",
+                  title: "Quadra deletada com sucesso!",
+                  closeOnClick: "true"
+                  });
+                this.$emit('deletion');
+              } else {
+                this.$notify({
+                  group: "error",
+                  title: "Erro",
+                  text: "Falha ao deletar.",
+                  closeOnClick: "true"
+                });
+              }
+            }
+          }
+        }
+      )
+      
+      
+    }
+  }
 }
 </script>
 
@@ -73,6 +129,8 @@ export default {
 
     display: flex;
     align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
 
     margin-left: 20px;
   }
@@ -82,6 +140,28 @@ export default {
     font-size: 15px;
 
     margin-top: 20px;
+  }
+
+  .label-group button {
+    margin-top: 15px;
+    margin-right: 10px;
+
+    background: none;
+    outline: none;
+    border: none;
+
+    cursor: pointer;
+  }
+
+  .label-group button img {
+    width: 20px;
+    height: 20px;
+    transition: .05s;
+    opacity: .8;
+  }
+
+  .label-group button img:hover {
+    opacity: 1;
   }
 
   .label-group p {

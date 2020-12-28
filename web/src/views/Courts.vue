@@ -2,10 +2,11 @@
   <div id="main-container">
     <main-header title="Conecte-se e garanta aquele futebol com os amigos!" id="main-header"/>
     <main>
-      <div class="center-wrapper">
+      <div class="center-wrapper" :key="courts_key">
         <div v-for="court of courts" :key="court.id">
           <card
             id="card"
+            @deletion="forceRerender"
             v-bind:name="court.name"
             v-bind:street="court.address.street"
             v-bind:number="court.address.number"
@@ -14,6 +15,8 @@
             v-bind:state="court.address.state"
             v-bind:hour_value="court.hour_value"
             v-bind:phone="court.phone"
+            v-bind:user_id="court.user_id"
+            v-bind:court_id="court.id"
           />
         </div>
       </div>
@@ -35,21 +38,26 @@ import Courts from "../services/courts";
 export default {
   data: () => {
     return {
-      courts: []
-    };
+      courts: [],
+      courts_key: 0,
+    }
   },
   components: {
     MainHeader,
     MainFooter,
     Card
   },
-  mounted: function() {
-    this.validate();
-    Courts.getCourts().then(res => {
-      this.courts = res.data;
-    });
+  created() {
+    this.forceRerender();
   },
   methods: {
+    forceRerender () {
+      this.validate();
+      Courts.getCourts().then(res => {
+        this.courts = res.data;
+      });
+      this.courts_key += 1;
+    },
     async validate() {
       const token = await window.localStorage.getItem("token");
       const res = await validate.jwt_validate(token);
@@ -85,6 +93,10 @@ main {
   justify-content: center;
 
   background: #f9f9f9;
+}
+
+.center-wrapper {
+  padding: 110px 150px !important;
 }
 
 #add-court {

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'; // router
 import Notifications from 'vue-notification'; // notifications plugin
+import VueConfirmDialog from 'vue-confirm-dialog' // confirm dialog plugin
 
 // components
 import App from './App.vue';
@@ -12,6 +13,8 @@ import UpdateCourt from './views/UpdateCourt';
 // middlewares
 Vue.use(VueRouter);
 Vue.use(Notifications);
+Vue.use(VueConfirmDialog);
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
 
 // paths
 const router = new VueRouter({
