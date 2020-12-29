@@ -65,8 +65,8 @@ services:
       context: ./web
       dockerfile: Dockerfile-prod
     image: web
-    restart: always
+    restart: always 
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - ./web:/usr/web
