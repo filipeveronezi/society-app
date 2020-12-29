@@ -4,7 +4,7 @@
       <div class="label-group">
         <h1 id="name"> {{ name }} </h1>
         <div class="buttons" v-if="user_id == local_user_id">
-          <button>
+          <button v-on:click="updateCourt()">
             <img src="../assets/images/edit.svg" alt="Botão de deletar">
           </button>
           <button v-on:click="deleteCourt()">
@@ -89,6 +89,9 @@ export default {
       )
       
       
+    },
+    async updateCourt() {
+      this.$router.push("/update-court/" + this.court_id);
     }
   }
 }

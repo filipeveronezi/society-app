@@ -51,7 +51,7 @@ export default {
     this.forceRerender();
   },
   methods: {
-    forceRerender () {
+    forceRerender() {
       this.validate();
       Courts.getCourts().then(res => {
         this.courts = res.data;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <vue-confirm-dialog></vue-confirm-dialog>
+    <vue-confirm-dialog class="confirm-dialog"></vue-confirm-dialog>
     <notifications group="error" classes="vue-notification error" />
     <notifications group="success" classes="vue-notification success" />
   </div>
@@ -47,6 +47,11 @@ body #app {
   color: #0F0F0F;
   height: 100vh;
   width: 100%;
+}
+
+.confirm-dialog {
+  font-family: "Oxygen", sans-serif;
+  font-weight: 700;
 }
 
 .vue-notification {

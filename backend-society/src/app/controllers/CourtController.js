@@ -19,6 +19,21 @@ module.exports = {
     }
   },
 
+  async update(req, res) {
+    const { court_id } = req.params;
+    const { name, hour_value, phone } = req.body;
+    try {
+      const court = await Court.update(
+        { name, hour_value, phone },
+        { where: { id: court_id }}
+      );
+      return res.status(200).json({ success: "Court update successful"});
+    } catch (error) {
+      console.log(error);
+      return res.status(400).send({ error: "Court update failed" });
+    }
+  },
+
   async delete(req, res) {
     const { court_id } = req.params;
     try {

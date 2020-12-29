@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'; // router
 import Notifications from 'vue-notification'; // notifications plugin
-import VueConfirmDialog from 'vue-confirm-dialog' // confirm dialog plugin
+import VueConfirmDialog from 'vue-confirm-dialog'; // confirm dialog plugin
+import VMask from 'v-mask'; // input mask plugin
 
 // components
 import App from './App.vue';
@@ -14,6 +15,8 @@ import UpdateCourt from './views/UpdateCourt';
 Vue.use(VueRouter);
 Vue.use(Notifications);
 Vue.use(VueConfirmDialog);
+Vue.use(VMask);
+
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
 
 // paths
@@ -22,8 +25,8 @@ const router = new VueRouter({
   routes: [
     { path: "/", component: Landing },
     { path: "/courts", component: Courts },
-    { path: "/add-court", component: AddCourt },
-    { path: "/update-court", component: UpdateCourt}
+    { path: "/add-court", component: AddCourt, name: 'add-court' },
+    { path: "/update-court/:id", component: UpdateCourt, name: 'update-court' }
   ]
 })
 

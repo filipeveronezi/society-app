@@ -1,6 +1,6 @@
 <template>
   <div id="court-form">
-    <form class="animate-up" @submit="createCourt">
+    <form class="animate-up" @submit="submitForm">
       <div class="title">
         <h1>Dados</h1>
         <hr>
@@ -11,11 +11,11 @@
       </div>
       <div class="input-group">
         <label for="phone">Contato</label>
-        <input type="text" id="phone" v-model="phone" required>
+        <input type="text" id="phone" v-model="phone" v-mask="'+55 (##) #####-####'" placeholder="(XX) XXXXX-XXXXX" required>
       </div>
       <div class="input-group">
         <label for="hour_value">Valor/h</label>
-        <input type="text" id="hour_value" v-model="hour_value" required>
+        <input type="text" id="hour_value" v-model="hour_value" v-mask="'?#?#?#.##'" placeholder="XXX.XX" required>
       </div>
       
       <div class="title">
@@ -29,7 +29,7 @@
         </div>
         <div class="input-group small-input">
           <label for="number">Nº</label>
-          <input type="text" id="number" v-model="number" required>
+          <input type="text" id="number" v-model="number" v-mask="'#####'" required>
         </div>
       </div>
 
@@ -45,7 +45,7 @@
         </div>
         <div class="input-group small-input">
           <label for="state">UF</label>
-          <input type="text" id="state" v-model="state" required>
+          <input type="text" id="state" v-model="state" v-mask="'AA'" required>
         </div>
       </div>
       <div class="submit">
@@ -57,9 +57,14 @@
 </template>
 
 <script>
+import Courts from "../services/courts";
+
 export default {
   data: () => {
     return {
+      court: {
+        address: {}
+      },
       name: "",
       phone: "",
       hour_value: "",
@@ -70,11 +75,52 @@ export default {
       state: "",
     };
   },
+  mounted() {
+    if(this.$route.name == 'update-court') {
+      this.fillForm();
+    }
+  },
   methods: {
-    async createCourt(e) {
+    submitForm(e) {
       e.preventDefault();
 
-      const userId = await window.localStorage.getItem("user_id");
+      if(this.$route.name == 'add-court') {
+        this.createCourt();
+      } else if(this.$route.name == 'update-court') {
+        this.updateCourt();
+      }
+    },
+    fillForm() {
+      const court_id = this.$route.params.id;
+      const user_id = window.localStorage.getItem("user_id");
+      
+      Courts.getCourt(court_id, user_id)
+      .then(res => {
+        this.court = res.data;
+        this.name = this.court.name;
+        this.phone = this.court.phone;
+        this.hour_value = this.court.hour_value;
+        this.street = this.court.address.street;
+        this.number = this.court.address.number;
+        this.district = this.court.address.district;
+        this.city = this.court.address.city;
+        this.state = this.court.address.state;
+      })
+      .catch(err => {
+        console.log(err);
+        
+        this.$router.push("/courts");
+        
+        this.$notify({
+          group: "error",
+          title: "Operação não permitida!",
+          closeOnClick: "true"
+        });
+      })
+    },
+    async createCourt() {
+
+      const user_id = await window.localStorage.getItem("user_id");
 
       const res = await fetch("http://localhost:3000/courts", {
         
@@ -86,15 +132,14 @@ export default {
           name: this.name,
           hour_value: this.hour_value,
           phone: this.phone,
-          user_id: userId
+          user_id: user_id
         })
       });
 
       const { id } = await res.json();
-      window.localStorage.setItem("court_id", id);
 
       if (res.status == 200) {
-        const secondRes = await fetch("http://localhost:3000/courts/" + id + "/addresses", {
+        const second_res = await fetch("http://localhost:3000/courts/" + id + "/addresses", {
         
           method: "POST",
           headers: {
@@ -109,11 +154,11 @@ export default {
           })
         });
 
-        if (secondRes.status == 200) {
+        if (second_res.status == 200) {
           this.$notify({
-          group: "success",
-          title: "Quadra cadastrada com sucesso!",
-          closeOnClick: "true"
+            group: "success",
+            title: "Quadra cadastrada com sucesso!",
+            closeOnClick: "true"
           });
           this.$router.push("/courts");
         } else {
@@ -124,6 +169,68 @@ export default {
             closeOnClick: "true"
           });
         }
+      } else {
+        this.$notify({
+          group: "error",
+          title: "Erro",
+          text: "Falha ao cadastrar.",
+          closeOnClick: "true"
+        });
+      }
+    },
+    async updateCourt() {
+      const court_id = this.$route.params.id;
+      const user_id = await window.localStorage.getItem("user_id");
+      
+      const res = await fetch("http://localhost:3000/courts/" + court_id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name: this.name,
+          hour_value: this.hour_value,
+          phone: this.phone,
+        })
+      });
+
+      if (res.status == 200) {
+        const second_res = await fetch("http://localhost:3000/courts/" + court_id + "/addresses", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            street: this.street,
+            number: this.number,
+            district: this.district,
+            city: this.city,
+            state: this.state,
+          })
+        });
+
+        if (second_res.status == 200) {
+          this.$notify({
+            group: "success",
+            title: "Dados atualizados com sucesso!",
+            closeOnClick: "true"
+          });
+          this.$router.push("/courts");
+        } else {
+          this.$notify({
+            group: "error",
+            title: "Erro",
+            text: "Falha ao atualizar dados.",
+            closeOnClick: "true"
+          });
+        }
+      } else {
+        this.$notify({
+          group: "error",
+          title: "Erro",
+          text: "Falha ao atualizar dados.",
+          closeOnClick: "true"
+        });
       }
     }
   }
@@ -220,6 +327,10 @@ export default {
     background: #f0f1f2;
     border: none;
     border-radius: 12px;
+  }
+
+  input::placeholder {
+    color: #CCCCCC;
   }
 
   .double-input-group {
