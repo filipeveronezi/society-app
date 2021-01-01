@@ -106,3 +106,5 @@ dist
 pgdata/
 
 yarn.lock
+
+DS_STORE
