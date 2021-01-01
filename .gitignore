@@ -107,4 +107,4 @@ pgdata/
 
 yarn.lock
 
-DS_STORE
+.DS_STORE
