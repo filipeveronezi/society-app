@@ -65,7 +65,7 @@ export default {
           */
           callback: async confirm => {
             if (confirm) {
-              const res = await fetch("http://society-api:3000/courts/" + this.court_id, {
+              const res = await fetch("http://society.filipeveronezi.dev.br:3000/courts/" + this.court_id, {
                 method: "DELETE",
               });
               if(res.status == 200) {
