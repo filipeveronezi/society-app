@@ -9,11 +9,11 @@ WORKDIR /usr/society-api
 # Copy package.json file first
 COPY package*.json ./
 
-# Install npm (node package manager)
-RUN yarn install
-
 # Install postgresql-client to run wait-for-postgres script (UNUSED for now)
 RUN apk update && apk add postgresql-client
 
 # Copy the rest of the application (except .dockerignore files)
 COPY . .
+
+# Install node modules
+RUN yarn install
