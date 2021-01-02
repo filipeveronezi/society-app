@@ -10,7 +10,7 @@ WORKDIR /usr/users-api
 COPY package*.json ./
 
 # Install npm (node package manager)
-RUN npm install
+RUN yarn install
 
 # Install postgresql-client to run wait-for-postgres script (UNUSED for now)
 RUN apk update && apk add postgresql-client
