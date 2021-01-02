@@ -17,7 +17,6 @@ services:
       - ./backend-users/pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    network_mode: host
 
   # 'users-api' runs the users api
   users-api:
@@ -32,7 +31,6 @@ services:
     volumes:
       - ./backend-users:/usr/users-api
       - /usr/users-api/node_modules
-    network_mode: host
 
   # 'society-db' runs the postgres app database
   society-db:
@@ -45,7 +43,6 @@ services:
       - ./backend-society/pgdata:/var/lib/postgresql/data
     ports:
       - 5433:5432
-    network_mode: host
 
   society-api:
     depends_on:
@@ -59,7 +56,6 @@ services:
     volumes:
       - ./backend-society:/usr/society-api
       - /usr/society-api/node_modules
-    network_mode: host
 
   # 'web' runs the frontend client
   web:
@@ -74,4 +70,3 @@ services:
     command: ["nginx", "-g", "daemon off;"]
     ports:
       - "80:80"
-    network_mode: host

@@ -57,7 +57,7 @@ export default {
     async login(e) {
       e.preventDefault();
 
-      const res = await fetch("http://localhost:3333/auth", {
+      const res = await fetch("http://users-api:3333/auth", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -95,7 +95,7 @@ export default {
     async register(e) {
       e.preventDefault();
 
-      const res = await fetch("http://localhost:3333/register", {
+      const res = await fetch("http://users-api:3333/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

@@ -122,7 +122,7 @@ export default {
 
       const user_id = await window.localStorage.getItem("user_id");
 
-      const res = await fetch("http://localhost:3000/courts", {
+      const res = await fetch("http://society-api:3000/courts", {
         
         method: "POST",
         headers: {
@@ -139,7 +139,7 @@ export default {
       const { id } = await res.json();
 
       if (res.status == 200) {
-        const second_res = await fetch("http://localhost:3000/courts/" + id + "/addresses", {
+        const second_res = await fetch("http://society-api:3000/courts/" + id + "/addresses", {
         
           method: "POST",
           headers: {
@@ -181,7 +181,7 @@ export default {
     async updateCourt() {
       const court_id = this.$route.params.id;
       
-      const res = await fetch("http://localhost:3000/courts/" + court_id, {
+      const res = await fetch("http://society-api:3000/courts/" + court_id, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -194,7 +194,7 @@ export default {
       });
 
       if (res.status == 200) {
-        const second_res = await fetch("http://localhost:3000/courts/" + court_id + "/addresses", {
+        const second_res = await fetch("http://society-api:3000/courts/" + court_id + "/addresses", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json"
