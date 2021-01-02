@@ -43,8 +43,6 @@
 </template>
 
 <script>
-import regeneratorRuntime from "regenerator-runtime"; // necessary for event handler async functions
-
 export default {
   data: () => {
     return {

@@ -22,7 +22,6 @@ import validate from "../validate";
 import MainHeader from "../components/MainHeader";
 import MainFooter from "../components/MainFooter";
 import CourtForm from "../components/CourtForm";
-import Courts from "../services/courts";
 
 export default {
   data: () => {

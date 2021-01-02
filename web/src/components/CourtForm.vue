@@ -180,7 +180,6 @@ export default {
     },
     async updateCourt() {
       const court_id = this.$route.params.id;
-      const user_id = await window.localStorage.getItem("user_id");
       
       const res = await fetch("http://localhost:3000/courts/" + court_id, {
         method: "PUT",
