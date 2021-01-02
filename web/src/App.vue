@@ -55,31 +55,24 @@ body #app {
 }
 
 .vue-notification {
-  font-family: "Oxygen", sans-serif;
+  font-family: "Oxygen", sans-serif !important;
 
-  padding: 20px;
-  margin: 15px 15px 0 0;
+  padding: 20px !important;
+  margin: 15px 15px 0 0 !important;
 
-  border-radius: 12px;
+  border-radius: 12px !important;
 
-  font-size: 16px;
+  font-size: 16px !important;
 
-  color: #ffffff;
-  background: #44a4fc;
-
-  border: none;
-}
-
-.vue-notification .warn {
-  background: #ffb648;
+  border: none !important;
 }
 
 .vue-notification .error {
-  background: #e54d42;
+  background: #e54d42 !important;
 }
 
 .vue-notification .success {
-  background: #68cd86;
+  background: #68cd86 !important;
 }
 
 </style>
