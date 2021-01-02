@@ -6,13 +6,11 @@ FROM node:alpine
 # Inside of the docker container this will be the working directory
 WORKDIR /usr/users-api
 
-RUN npm install -g sequelize sequelize-cli pg pg-hstore --save
-
 # Copy package.json file first
 COPY package*.json ./
 
 # Install npm (node package manager)
-RUN npm install
+RUN npm install -g
 
 # Install postgresql-client to run wait-for-postgres script (UNUSED for now)
 RUN apk update && apk add postgresql-client
