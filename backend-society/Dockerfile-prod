@@ -12,6 +12,9 @@ COPY package*.json ./
 # Install node modules
 RUN yarn install
 
+# Install node modules globally
+RUN yarn global add cors express pg pg-hstore sequelize sequelize-cli
+
 # Install postgresql-client to run wait-for-postgres script (UNUSED for now)
 RUN apk update && apk add postgresql-client
 
