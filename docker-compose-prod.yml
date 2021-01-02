@@ -58,15 +58,14 @@ services:
 
   # 'web' runs the frontend client
   web:
+    image: nginx:alpine
     depends_on:
       - users-db
       - users-api
     build:
       context: ./web
       dockerfile: Dockerfile-prod
-    image: web
     restart: always 
+    command: ["nginx", "-g", "daemon off;"]
     ports:
       - "80:80"
-    volumes:
-      - ./web:/usr/web
