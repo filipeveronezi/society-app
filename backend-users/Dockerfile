@@ -6,7 +6,7 @@ FROM node:alpine
 # Inside of the docker container this will be the working directory
 WORKDIR /usr/users-api
 
-RUN npm install sequelize sequelize-cli pg pg-hstore --save
+RUN npm install -g sequelize sequelize-cli pg pg-hstore --save
 
 # Copy package.json file first
 COPY package*.json ./
