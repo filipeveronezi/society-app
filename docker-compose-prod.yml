@@ -22,9 +22,7 @@ services:
   users-api:
     depends_on:
       - users-db
-    build:
-      context: ./backend-users
-      dockerfile: Dockerfile-prod
+    build: ./backend-users
     image: users
     restart: always
     command: ["./wait-for-postgres.sh", "users-db", "--", "npm", "run", "start"]
@@ -49,9 +47,7 @@ services:
   society-api:
     depends_on:
       - society-db
-    build:
-      context: ./backend-society
-      dockerfile: Dockerfile-prod
+    build: ./backend-society
     image: society
     restart: always
     command: ["./wait-for-postgres.sh", "society-db", "--", "npm", "run", "start"]
