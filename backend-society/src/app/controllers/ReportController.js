@@ -39,5 +39,30 @@ module.exports = {
       console.log(error);
       return res.status(400).json({ error: 'Selection failed' });
     }
+  },
+
+  async showByUser(req, res) {
+
+    const { user_id } = req.params;
+    try {
+      const courts = await Court.findAll({
+        where: {
+          user_id
+        },
+        include: [{
+          model: Address,
+          as: 'address',
+          where: {}
+        }]
+      });
+      if(courts) {
+        return res.json(courts);
+      } else {
+        return res.status(400).json({ error: "Court not found" });
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ error: 'Selection failed' });
+    }
   }
 }

@@ -11,6 +11,8 @@ routes.get('/courts/addresses', AddressController.index);
 
 routes.get('/courts/report', ReportController.show);
 
+routes.get('/courts/report/:user_id', ReportController.showByUser);
+
 routes.get('/courts/report/:court_id/:user_id', ReportController.showOne);
 
 routes.post('/courts', CourtController.store);
