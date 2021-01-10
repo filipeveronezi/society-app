@@ -44,5 +44,5 @@ Project is currently running on [this link](http://society.filipeveronezi.dev.br
 
 ## Bussiness rules
 
-- [x] User module should be completely separated from the application's module
+- [x] User module should be completely separated from the application module
 
