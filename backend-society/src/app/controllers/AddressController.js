@@ -11,7 +11,6 @@ module.exports = {
     const { court_id } = req.params;
     const { street, number, district, city, state } = req.body;
 
-    console.log(court_id);
     const court = await Court.findByPk(court_id);
 
     if(!court) {
