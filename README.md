@@ -51,4 +51,3 @@ Project is currently running on [this link](http://society.filipeveronezi.dev.br
 - This was a study project focused on all the areas above, therefore, it does not focus on
   - Security
   - Responsive Design
-- There will more personal projects on the future that will focus on these other areas :)
