@@ -4,8 +4,6 @@
 
 Society App is a full stack studying project developed for my Web Development class at college. It was pretty fun to go through all the obstacles and finally get to finish my first full stack project ever 🤩
 
-Project is currently running on [this link](http://society.filipeveronezi.dev.br/), hosted by AWS EC2.
-
 ## 💻 Tech
 
 ### Database
